@@ -1,0 +1,28 @@
+/*
+	Coin Slider jQuery plugin CSS styles
+	http://workshop.rs/projects/coin-slider
+*/
+
+
+.coin-slider { overflow: hidden; zoom: 1; position: relative; }
+.coin-slider a{ text-decoration: none; outline: none; border: none; }
+
+.cs-buttons { font-size: 10px; padding: 2px; float: left; }
+
+.cs-buttons a { margin-left: 1px; height: 1px; width: 1px; float: left; border: 1px solid #B8C4CF; color: #B8C4CF; text-indent: -1000px; }
+
+.cs-active { background-color: #B8C4CF; color: #FFFFFF; }
+
+.cs-title { width: 545px; padding: 10px; background-color: #666666; color: #FFFFFF; }
+
+.cs-prev { background:url(buttons.png); background-color: #444444; color: #FFFFFF; padding: 6px 22px; font-size:0px; background-position: 1px -1px}
+
+a:hover.cs-prev { background:url(buttons.png); background-color: #444444; color: #FFFFFF; padding: 6px 22px; font-size:0px; background-position: 1px -44px}
+
+a:active.cs-prev { background:url(buttons.png); background-color: #444444; color: #FFFFFF; padding: 6px 22px; font-size:0px; background-position: 1px -89px}
+
+.cs-next { background:url(buttons.png); background-color: #444444; color: #FFFFFF; padding: 6px 22px; font-size:0px; background-position: -83px -1px}
+
+a:hover.cs-next { background:url(buttons.png); background-color: #444444; color: #FFFFFF; padding: 6px 22px; font-size:0px; background-position: -83px -44px}
+
+a:active.cs-next { background:url(buttons.png); background-color: #444444; color: #FFFFFF; padding: 6px 22px; font-size:0px; background-position: -83px -89px}
