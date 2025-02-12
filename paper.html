@@ -1,0 +1,3090 @@
+<script language="javascript">
+<!--
+function OpenWin(url, wsize, hsize, sel)
+{	
+	var stat = "scrollbars="+sel+"toolbar=no,location=no,directories=no,status=yes,width="+wsize+",height="+hsize+",resizable=no,menubar=no,top=100,left=100";
+
+	window.open(url, "StartWindow", stat);
+}
+
+function isEmpty(data)
+{
+	if(data=="")
+		return true;
+
+	if(data.length == 0)
+		return true;
+
+	return false;
+}
+
+function Comma(number) 
+{
+	number = '' + number;
+	
+	if (number.length > 3) 
+	{
+		var mod = number.length % 3;
+		var output = (mod > 0 ? (number.substring(0,mod)) : '');
+		
+		for (i=0 ; i < Math.floor(number.length / 3); i++)
+		{
+			if ((mod == 0) && (i == 0))
+				output += number.substring(mod+ 3 * i, mod + 3 * i + 3);
+			else
+				output+= ',' + number.substring(mod + 3 * i, mod + 3 * i + 3);
+		}
+		return (output);
+	}
+	else 
+		return number;
+}
+
+function getObj(obj) 
+{ 
+	var nscp = (navigator.appName == "Netscape");
+
+	if (nscp) 
+		compLayr = document.layers[obj];
+	else
+		compLayr = eval("document.all." + obj + ".style");
+
+	return compLayr;
+} 
+
+function showHide(name)
+{ 
+	var obj = getObj(name);
+	   
+	if (obj.visibility == "hidden")
+		obj.visibility = "visible" ;
+	else
+		obj.visibility = "hidden" ;
+} 
+
+function showHide2(name, param)
+{ 
+	var obj = getObj(name);
+	   
+	obj.visibility = param;
+} 
+
+function checkNumeric(doc)
+{
+	var str= doc.value;
+	var count = 0;
+	
+	for (var i = 0;i < str.length; i++)
+		if(str.charAt(i) < '0' || str.charAt(i) > '9')
+		{
+			switch (str.charAt(i))
+			{
+				case '-' :
+					break;
+					
+				case '.' :
+					break;
+			
+				default :
+					count++;
+			}
+		}
+		
+	if(count!=0)
+	{
+	  alert("숫자만 입력이 가능합니다.");
+	  return false;
+	}
+	
+	return true;
+}
+
+function checkHangul(doc) 
+{ 
+	for(var i = 0; i < doc.value.length; i++) 
+	{ 
+		var a = doc.value.charCodeAt(i); 
+		if (a > 128) 
+		{ 
+			alert("한글은 입력할 수 없습니다."); 
+			return false;
+		}
+	}
+	
+	return true;
+} 
+//-->
+</script>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--[if lt IE 7 ]><html class="ie ie6" lang="kr"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="kr"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="kr"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="kr"> <!--<![endif]-->
+<head>
+
+
+<meta charset="euc-kr" />
+<title>Ikchoon Lee (Stephanus)</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<link rel="icon" type="image/png" href="images/icon.png" />
+<link rel="icon" type="image/x-icon" href="images/icoon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="images/icoon.ico" />
+
+<link media="screen" charset="euc-kr" rel="stylesheet" href="css/base.css" />
+<link media="screen" charset="euc-kr" rel="stylesheet" href="css/skeleton.css" />
+<link media="screen" charset="euc-kr" rel="stylesheet" href="css/layout.css" />
+<link media="screen" charset="euc-kr" rel="stylesheet" href="css/child.css" />
+<link rel="stylesheet" href="css/animate.min.css" type="text/css" media="screen" charset="euc-kr" />
+<link rel="stylesheet" href="css/jquery.onebyone.css" type="text/css" media="screen" charset="euc-kr" />
+<link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" charset="euc-kr" />
+<link rel="stylesheet" href="fileman/anil.css" type="text/css">
+<!--[if (IE 6)|(IE 7)]>
+    <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+<![endif]-->
+
+<!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+<![endif]-->
+<script type="text/javascript" language="javascript" src="js/jquery-1-8-2.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.carousel.js"></script>
+<script type="text/javascript" src="js/jquery.color.animation.js"></script>
+<script type="text/javascript" src="js/jquery.prettyPhoto.js" charset="euc-kr"></script>
+<script type="text/javascript" src="js/default.js"></script>
+<script type="text/javascript" src="js/jquery.onebyone.min.js"></script>
+<script type="text/javascript" src="js/jquery.touchwipe.min.js"></script>
+<script type="text/javascript" src="js/jquery.isotope.min.js"></script>
+
+<!-- back-to-top -->
+	<style>
+		
+		.back-to-top {
+			position: fixed;
+			bottom: 2em;
+			right: 0px;
+			text-decoration: none;
+			color: #000000;
+			background-color: rgba(205, 205, 205, 0.80);
+			font-size: 12px;
+			padding: 1em;
+			display: none;
+			z-index:10000;
+		}
+
+		.back-to-top:hover {	
+			background-color: rgba(135, 135, 135, 0.50);
+			color: #000;
+		}	
+
+	</style>
+<!-- end of back-to-top -->
+
+<!-- slideshow -->
+  <style>
+
+    #slideshow {
+      display: none
+    }
+    
+    #slideshow .slidesjs-navigation {
+      margin-top:5px;
+    }
+
+    a.slidesjs-next,
+    a.slidesjs-previous,
+    a.slidesjs-play,
+    a.slidesjs-stop {
+      background-image: url(images/btns-next-prev.png);
+      background-repeat: no-repeat;
+      display:block;
+      width:12px;
+      height:18px;
+      overflow: hidden;
+      text-indent: -9999px;
+      float: left;
+      margin-right:5px;
+    }
+
+    a.slidesjs-next {
+      margin-right:10px;
+      background-position: -12px 0;
+    }
+
+    a:hover.slidesjs-next {
+      background-position: -12px -18px;
+    }
+
+    a.slidesjs-previous {
+      background-position: 0 0;
+    }
+
+    a:hover.slidesjs-previous {
+      background-position: 0 -18px;
+    }
+
+    a.slidesjs-play {
+      width:15px;
+      background-position: -25px 0;
+    }
+
+    a:hover.slidesjs-play {
+      background-position: -25px -18px;
+    }
+
+    a.slidesjs-stop {
+      width:18px;
+      background-position: -41px 0;
+    }
+
+    a:hover.slidesjs-stop {
+      background-position: -41px -18px;
+    }
+
+    .slidesjs-pagination {
+      margin: 7px 0 0;
+      float: right;
+      list-style: none;
+      width: 610px;
+    }
+
+    .slidesjs-pagination li {
+      float: left;
+      margin: 0 1px;
+    }
+
+    .slidesjs-pagination li a {
+      display: block;
+      width: 3px;
+      height: 0;
+      padding-top: 4px;
+      background-image: url(images/pagination.png);
+      background-position: -5px -18px;
+      float: left;
+      overflow: hidden;
+    }
+
+    .slidesjs-pagination li a.active,
+    .slidesjs-pagination li a:hover.active {
+      background-position: -5px -5px
+    }
+
+    .slidesjs-pagination li a:hover {
+      background-position: -5px -31px
+    }
+
+    #slideshow a:link,
+    #slideshow a:visited {
+      color: #333
+    }
+
+    #slideshow a:hover,
+    #slideshow a:active {
+      color: #9e2020
+    }
+
+    .navbar {
+      overflow: hidden
+    }
+  </style>
+<!-- end of slideshow -->
+
+<!-- scroller -->
+<script type="text/javascript" src="js/jquery.simplyscroll.js"></script>
+<link rel="stylesheet" href="css/jquery.simplyscroll.css" media="all" type="text/css">
+<script type="text/javascript">
+(function($) {
+	$(function() {
+		$("#scroller").simplyScroll({
+customClass:'vert',
+frameRate:	24,	
+speed:	1,	
+orientation:	'vertical',	
+direction:	'forwards',	
+auto:	true,	
+autoMode:	'loop',	
+manualMode:	'end',	
+pauseOnHover:	true,
+pauseOnTouch:	true,	
+pauseButton:	false,	
+startOnLoad:	false	
+
+//customClass	'simply-scroll'	Class name for styling
+//frameRate	24	Number of movements/frames per second
+//speed	1	Number of pixels moved per frame, in 'loop' mode must be //divisible by total width of scroller
+//orientation	'horizontal'	'horizontal or 'vertical' - not to be confused with device orientation
+//direction	'forwards'	'forwards' or 'backwards'
+//auto	true	Automatic scrolling, use false for button controls
+//autoMode	'loop'	auto = true, 'loop' or 'bounce', (disables buttons)
+//manualMode	'end'	auto = false, 'loop' or 'end' (end-to-end)
+//pauseOnHover	true	Pause scroll on hover (auto only)
+//pauseOnTouch	true	Touch enabled devices only (auto only)
+//pauseButton	false	Creates a pause button (auto only)
+//startOnLoad	false	Init plugin on window.load (to allow for image loading etc)
+
+});
+	});
+})(jQuery);
+</script>
+<!-- end of scroller -->
+
+<!-- div part hide -->
+<script src="js/show.js"></script>
+<!-- end of hide -->
+
+<!-- color pickers -->
+<!-- end of color pickers -->
+
+<!-- accordion menu -->
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script type="text/javascript" src="js/modernizr.custom.29473.js"></script>
+<!-- end of accordion menu -->
+		
+<!-- tab menu -->
+	<script>
+	$(document).ready(function() {
+		$('ul.form li a').click(
+			function(e) {
+				e.preventDefault(); // prevent the default action
+				e.stopPropagation; // stop the click from bubbling
+				$(this).closest('ul').find('.selected').removeClass('selected');
+				$(this).parent().addClass('selected');
+			});
+	});
+	</script>
+
+	
+	<style>
+
+	ul.form {
+		margin-top: 8px;
+		margin-bottom: 10px;
+		position:relative;
+		background:#eee;
+		width:111px;
+		height:208;
+		list-style: none;
+		overflow:hidden;
+		
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;	
+		
+		-webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+		-moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+		box-shadow:  1px 1px 10px rgba(0, 0, 0, 0.1);	
+	}
+	
+	ul.form_set{
+		height:120;
+	}
+
+	.form li a {
+		width:100px;
+		padding-left:10px;
+		height:45px;
+		line-height:45px;
+		margin-top: -12px;
+		display:block;
+		overflow:hidden;
+		position:relative;
+		text-decoration:none;
+		text-transform:uppercase;
+		font-size:14px;
+		color:#686868;
+		
+		-webkit-transition:all 0.2s linear;
+		-moz-transition:all 0.2s linear;
+		-o-transition:all 0.2s linear;
+		transition:all 0.2s linear;			
+	}
+
+	.form li a:hover {
+		background:#cdf;
+	}
+
+	.form li a.profile {
+		border-left:5px solid #008747;
+	}
+		
+	.form li a.settings {
+			border-left:5px solid #cf2130;
+	}
+
+	.form li a.label {
+		border-left:5px solid #fecf54;
+		background:#fecf54;
+		height:30px;
+		padding-left:20px;
+		line-height:30px;
+		margin-top: 0px;
+		display:block;
+		overflow:hidden;
+		position:relative;
+		text-decoration:none;
+		text-transform:uppercase;
+		font-size:14px;
+		color:#686868;
+		font-weight: bold;
+
+	}
+
+	.form li:first-child a:hover, .form li:first-child a {
+		-webkit-border-radius: 5px 5px 0 0;
+		-moz-border-radius: 5px 5px 0 0;
+		border-radius: 5px 5px 0 0;
+	}
+
+	.form li:last-child a:hover, .form li:last-child a {
+		-webkit-border-radius: 0 0 5px 5px;
+		-moz-border-radius: 0 0 5px 5px;
+		border-radius: 0 0 5px 5px;
+	}
+
+	.form li.selected em {
+		font-size: 10px;
+		background: #58c;
+		padding: 3px 5px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;		
+		font-style: normal;
+		color: #fff;
+		margin-top: 17px;
+		margin-right: 15px;
+		line-height: 10px;
+		height: 10px;		
+		float:right;
+	}
+
+	.form li.selected a {
+		background:#bdf;
+		background-repeat:no-repeat;
+		background-position:right center;
+	}
+
+	</style>
+<!-- end of tab menu -->
+
+<script language="JavaScript" type="text/JavaScript">
+<!--
+      //윈도우 띄우기
+      function Init(Xsize,Ysize,str)
+      {
+	  var strTemp="top=50 ,left=100 ,width="+Xsize+",height="+Ysize
+	  var strTemp2
+
+	  if (str=="resize")
+		strTemp2=",status=yes,resizable=yes,scrollbars=yes" //,menubar=yes" 
+	  else
+		strTemp2=""
+
+	  strTemp=strTemp+strTemp2
+	//theURL,"ggg",'width=500,height=400,toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes'
+          window.open("","t",strTemp);  
+      }
+//-->
+</script>
+
+</head>
+
+<body>
+    <div class="page-wrapper" style="transform: scale(1); 
+    								-webkit-transform: scale(1); -webkit-transform-origin: 0 0; 
+    								-moz-transform: scale(1); -moz-transform-origin: 0 0; 
+    								-o-transform: scale(1); -o-transform-origin: 0 0; 
+    								-ms-transform: scale(1); -ms-transform-origin: 0 0;">
+        <div class="slug-pattern ">
+            
+            <div class="overlay">
+            	<div class="slug-cut"></div>
+        	</div>
+        </div>
+        <div class="header ">
+        
+  			            <div class="nav">
+                <div class="container">
+                
+                    <!-- Standard Nav (x >= 768px) -->
+                    <div class="standard">
+                    
+                        <div class="five column alpha">
+                            <div class="page-title">
+                                <h1>Prof. Kim Chan Kyung</h1>
+                            </div>
+                        </div>
+                    
+                        <div class="eleven column omega tabwrapper">
+                            <div class="menu-wrapper">
+                                <ul class="tabs menu">
+                                    <li>
+                                       <a href="index.html">연구주제</a>
+                                    </li>
+                                    <li>
+                                        <a href="history.html">History</a>
+                                    </li>
+                                    <li>
+                                        <a href="paper.html" class="active">Research</a>
+                                        <ul class="child">
+                                            <li><a href="paper.html" >연구논문</a></li>
+                                            <li><a href="book.html">저서</a></li>
+                                            <li><a href="review.html">Review</a></li>
+                                       </ul>
+                                    </li>
+                                    <li>
+                                        <a href="msc.html" class="">석박사</a>
+                                        <ul class="child">                                            
+                                            <li><a href="msc.html">석사</a></li>
+                                            <li><a href="doctor.html">박사</a></li>
+                                            <li><a href="postdoc.html">Post Doc.</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="korea.html" class="">학회교류</a>
+                                        <ul class="child">
+                                            
+                                            <li><a href="korea.html">국내학회</a></li>
+                                            <li><a href="international.html">국제학회</a></li>
+                                            <li><a href="society.html">교류</a></li>
+                                        </ul>
+                                    </li> 
+                                </ul>
+                          </div>
+                        </div>
+                    </div>
+                    <!-- Standard Nav Ends, Start of Mini -->
+                    
+                    <div class="mini">
+                        <div class="twelve column alpha omega mini">
+                            <div class="page-title">
+                                <h1>Prof. Kim Chan Kyung</h1>
+                            </div>
+                        </div>                        
+                        <div class="twelve column alpha omega navagation-wrapper">
+                            <select class="navagation">
+                                <option value="" selected="selected">Site Navagation</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Start of Mini Ends -->
+                </div> 
+                
+            </div>
+            
+            <div class="shadow"></div>
+            
+
+		            <div class="container">
+		                <div class="page-title">
+		                    <div class="rg"></div>
+		                    <h1>연구논문</h1>
+		                </div>
+		        	</div>	
+            
+        </div>
+        
+        <div class="body">
+            <div class="body-round"></div>
+            <div class="body-wrapper">
+                <div class="side-shadows"></div>
+                <div class="content">
+                
+	         	                
+                    <div class="container callout standard">
+                        
+                        
+                        <div class="four columns button-wrap">
+                             <div class="wrapper ">
+                                <!--<form action="">
+                                    <input type="text" class="search-box" name="str_search" value="" placeholder='' />
+                                    <input type="image" src="images/design/search-icon.png" class="searchbox-submit" value=""/>
+                                </form>-->
+                            </div>	
+                        </div>
+                    </div>
+                    <div class="callout-hr"></div>                        
+                    <div class="container">
+                        <div class="sixteen columns">
+                        
+                        	
+                            <div class="portfolio info">
+                                <div id="isotope-container" class="portfolio-container">
+	                        <div class='item' id='construction'>
+
+                                        <div class='img' id='construction'><h6><b>1.</b></h6></div>
+                                        <div class='img border'><img src='images/p_next.png' /><a href='gallery/image1.png' class='zoom prettyPhoto'></a></div>
+                                        <div class='content'>
+                                            <p>
+                                                B.B.P.Tice, Ikchoon Lee and F.H.Kendall, "Kinetic Studies of Hydrogen Exchange in Dialkylanilines Part I.", <em>J. Am. Chem. Soc.</em>, <strong>85</strong>, 329-337 (1963).
+                                            </p>
+                                        </div>
+
+                                        <div class='img' id='construction'><h6><b>2.</b></h6></div>
+                                        <div class='img border'><img src='images/p_next.png' /><a href='gallery/image1.jpg' class='zoom prettyPhoto'></a></div>
+                                        <div class='content'>
+                                            <p>
+                                                B.B.P.Tice, Ikchoon Lee and F.H.Kendall, "Kinetic Studies of Hydrogen Exchange in Dialkylanilines Part I.", <em>J. Am. Chem. Soc.</em>, <strong>85</strong>, 329-337 (1963).
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+
+
+					  		<div class="list_slideItem">
+								<ul class="list_arrow">
+								
+									
+									<li class='img border'>
+                                        <img src='images/p_next.png' /><a href='gallery/image1.png' class='zoom prettyPhoto'></a>
+
+										Revolutionizing flexible Electronics: Integrating liquid metal DIW 3D printing by bimolecular interpenetrating network,
+										
+										
+											
+											
+												CHEMICAL ENGINEERING JOURNAL,
+											
+										
+										
+										151013,
+										2024
+									</li>
+									
+									<li>
+										Discovery of novel glucosinolates inhibiting advanced glycation end products: Virtual screening and molecular dynamic simulation,
+										<!--PROTEINS-STRUCTURE FUNCTION AND BIOINFORMATICS,-->
+										
+											
+											
+												PROTEINS-STRUCTURE FUNCTION AND BIOINFORMATICS,
+											
+										
+										Vol.91,No.9,
+										1351~1360,
+										2023
+									</li>
+									
+									<li>
+										Theoretically and Experimentally Exploring the Isobaric Vapor?Liquid Associating Behavior for Binary and Ternary Mixtures Containing Methanol, Water, and Ethanoic Acid,
+										<!--Journal of Chemical & Engineering Data,-->
+										
+											
+											
+												Journal of Chemical & Engineering Data,
+											
+										
+										
+										2610~2628,
+										2023
+									</li>
+									
+									<li>
+										Theoretical Studies on 2,3,5,6-Tetra(1H-tetrazol-5-yl) pyrazine and 1,1-Diamino-2,2-Dinitroethylene Blending System,
+										<!--JOURNAL OF MOLECULAR GRAPHICS & MODELLING,-->
+										
+											
+											
+												JOURNAL OF MOLECULAR GRAPHICS & MODELLING,
+											
+										
+										
+										
+										2022
+									</li>
+									
+									<li>
+										Mechanistic study on the depolymerization of typical lignin-derived oligomers catalyzed by Pd/NbOPO4,
+										<!--MOLECULAR CATALYSIS,-->
+										
+											
+											
+												MOLECULAR CATALYSIS,
+											
+										
+										Vol.528,
+										112500,
+										2022
+									</li>
+									
+									<li>
+										Molecular dynamics study of H4TTP crystal morphology,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.43,No.7,
+										978~983,
+										2022
+									</li>
+									
+									<li>
+										Evolution of Microstructure and Mechanical Properties of Al-Zn-Mg-Cu Alloy by Extrusion and Heat Treatment,
+										<!--COATINGS,-->
+										
+											
+											
+												COATINGS,
+											
+										
+										Vol.12,
+										
+										2022
+									</li>
+									
+									<li>
+										Improvement of the photostability of cycloalkylamine-7-sulfonyl ?2,1,3-benzoxadiazole-based fluorescent dyes by replacing the dimethylamino substituent with cyclic amino rings,
+										<!--NEW JOURNAL OF CHEMISTRY,-->
+										
+											
+											
+												NEW JOURNAL OF CHEMISTRY,
+											
+										
+										Vol.46,
+										7003~7013,
+										2022
+									</li>
+									
+									<li>
+										Mechanism and Selectivity of Cyclopropanation of 3-Alkenyl-oxindoles with Sulfoxonium Ylides Catalyzed by a Chiral N,N'-Dioxide-Mg(II) Complex,
+										<!--JOURNAL OF ORGANIC CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF ORGANIC CHEMISTRY,
+											
+										
+										Vol.86,No.17,
+										11683~11697,
+										2021
+									</li>
+									
+									<li>
+										Synthesis, Biological Evaluation, and 3D-QSAR Studies of N-(Substituted pyridine-4-yl)-1-(substituted phenyl)-5-trifluoromethyl-1H-pyrazole-4-carboxamide Derivatives as Potential Succinate Dehydrogenase Inhibitors,
+										<!--JOURNAL OF AGRICULTURAL AND FOOD CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF AGRICULTURAL AND FOOD CHEMISTRY,
+											
+										
+										Vol.69,No.4,
+										1214~1223,
+										2021
+									</li>
+									
+									<li>
+										Stimuli-responsive cyclometalated platinum complex bearing bent molecular geometry for highly efficient solution-processable OLEDs,
+										<!--CHINESE CHEMICAL LETTERS,-->
+										
+											
+											
+												CHINESE CHEMICAL LETTERS,
+											
+										
+										Vol.32,No.1,
+										493~496,
+										2021
+									</li>
+									
+									<li>
+										Asymmetric Cyanation of Activated Olefins with Ethyl Cyanoformate Catalyzed by Ti(IV)-Catalyst: A Theoretical Study,
+										<!--CATALYSTS,-->
+										
+											
+											
+												CATALYSTS,
+											
+										
+										Vol.10,No.9,
+										
+										2020
+									</li>
+									
+									<li>
+										Copolymerization of Functional Norbornenes Catalyzed by Pd Complexes: Is it Living?,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.41,No.7,
+										697~701,
+										2020
+									</li>
+									
+									<li>
+										Combined Experimental and Theoretical Studies on the Prediction of the Isobaric Vapor-Liquid Association Phenomena for Binary and Ternary Mixtures of Water, Ethanoic Acid, and Propanoic Acid,
+										<!--INDUSTRIAL & ENGINEERING CHEMISTRY RESEARCH,-->
+										
+											
+											
+												INDUSTRIAL & ENGINEERING CHEMISTRY RESEARCH,
+											
+										
+										Vol.59,No.29,
+										13290~13304,
+										2020
+									</li>
+									
+									<li>
+										Structure-antioxidant activity relationship of methoxy, phenolic hydroxyl, and carboxylic acid groups of phenolic acids,
+										<!--Scientific Reports,-->
+										
+											
+											
+												Scientific Reports,
+											
+										
+										Vol.10,No.1,
+										
+										2020
+									</li>
+									
+									<li>
+										A water-stable zinc(ii)-organic framework as a multiresponsive luminescent sensor for toxic heavy metal cations, oxyanions and organochlorine pesticides in aqueous solution,
+										<!--DALTON TRANSACTIONS,-->
+										
+											
+											
+												DALTON TRANSACTIONS,
+											
+										
+										Vol.48,No.44,
+										16776~16785,
+										2019
+									</li>
+									
+									<li>
+										Synthesis of Novel Palladium Complexes Containing beta-Diketonate and NHC Ligands and their Catalytic Ability for Addition Polymerizations of the Functional Norbornenes,
+										<!--BULLETIN OF THE KOREAN CHEMICAL SOCIETY,-->
+										
+											
+											
+												BULLETIN OF THE KOREAN CHEMICAL SOCIETY,
+											
+										
+										Vol.40,No.7,
+										710~718,
+										2019
+									</li>
+									
+									<li>
+										Molecular dynamics simulation about the sensing process of sodium dodecyl benzyl sulfonate in biphenyl liquid crystal sensors,
+										<!--Chemical Research and Application,-->
+										
+											
+											
+												Chemical Research and Application,
+											
+										
+										Vol.31,No.6,
+										1092~1097,
+										2019
+									</li>
+									
+									<li>
+										A choline chloride-acrylic acid deep eutectic solvent polymer based on Fe3O4 particles and MoS2 sheets (poly(ChCl-AA DES)@Fe3O4@MoS2) with specific recognition and good antibacterial properties for beta-lactoglobulin in milk,
+										<!--TALANTA,-->
+										
+											
+											
+												TALANTA,
+											
+										
+										Vol.197,
+										567~577,
+										2019
+									</li>
+									
+									<li>
+										DFT Study on the Interaction of Subnanometer Cobalt Clusters with Pristine/Defective Graphene,
+										<!--BULLETIN OF THE KOREAN CHEMICAL SOCIETY,-->
+										
+											
+											
+												BULLETIN OF THE KOREAN CHEMICAL SOCIETY,
+											
+										
+										Vol.40,No.5,
+										446~452,
+										2019
+									</li>
+									
+									<li>
+										Activation of formyl C-H and hydroxyl O-H bonds in HMF by the CuO (111) and Co3O4 (110) surfaces: A DFT study,
+										<!--APPLIED SURFACE SCIENCE,-->
+										
+											
+											
+												APPLIED SURFACE SCIENCE,
+											
+										
+										Vol.456,
+										174~183,
+										2018
+									</li>
+									
+									<li>
+										Direct catalytic conversion of glucose and cellulose,
+										<!--GREEN CHEMISTRY,-->
+										
+											
+											
+												GREEN CHEMISTRY,
+											
+										
+										Vol.20,No.4,
+										863~872,
+										2018
+									</li>
+									
+									<li>
+										학교 과학에서 과학 글쓰기의 위상과 교육적 의미,
+										<!--교육문화연구,-->
+										
+											
+											
+												교육문화연구,
+											
+										
+										Vol.23,No.6,
+										297~316,
+										2017
+									</li>
+									
+									<li>
+										Mechanistic Study on the Aminolysis of Chlorophosphates in Solvent: Concerted or Stepwise?,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.38,No.8,
+										960~963,
+										2017
+									</li>
+									
+									<li>
+										Theoretical investigations on the methylation of N-H bond using CO2 and hydrosilane catalyzed by Zinc(II) complexes: Mechanism and ligand effect,
+										<!--JOURNAL OF CO2 UTILIZATION,-->
+										
+											
+											
+												JOURNAL OF CO2 UTILIZATION,
+											
+										
+										Vol.20,
+										178~189,
+										2017
+									</li>
+									
+									<li>
+										Insight into substituent effects on the hydrolysis of amidines by a microhydration model,
+										<!--THEORETICAL CHEMISTRY ACCOUNTS,-->
+										
+											
+											
+												THEORETICAL CHEMISTRY ACCOUNTS,
+											
+										
+										Vol.136,No.6,
+										
+										2017
+									</li>
+									
+									<li>
+										Molecular simulation of liquid crystal sensor based on competitive inclusion effect,
+										<!--JOURNAL OF INCLUSION PHENOMENA AND MACROCYCLIC CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF INCLUSION PHENOMENA AND MACROCYCLIC CHEMISTRY,
+											
+										
+										Vol.87,1-2,
+										95~103,
+										2017
+									</li>
+									
+									<li>
+										A Theoretical Study on the Mechanism of Methylation of N-methylaniline with CO2 and Silyl Hydrides,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.38,No.1,
+										12~18,
+										2017
+									</li>
+									
+									<li>
+										Prediction of Crystal Density and Explosive Performance of High-Energy-Density Molecules Using the Modified MSEP Scheme,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.37,No.10,
+										1683~1689,
+										2016
+									</li>
+									
+									<li>
+										MP2 study on the selectivity of gold catalysis with alkene and furan activation,
+										<!--COMPUTATIONAL AND THEORETICAL CHEMISTRY,-->
+										
+											
+											
+												COMPUTATIONAL AND THEORETICAL CHEMISTRY,
+											
+										
+										Vol.1090,
+										245~252,
+										2016
+									</li>
+									
+									<li>
+										Ethylenedisalicylic Acid Derivatives as Dual Inhibitors of PTP1B and IKK beta and their Antiobesity and Antidiabetic Effects in Mice,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.37,No.6,
+										855~863,
+										2016
+									</li>
+									
+									<li>
+										How to Predict Heats of Formation of Molecules?,
+										<!--Journal of Multifunctional Materials & Photoscience,-->
+										
+											
+											
+												Journal of Multifunctional Materials & Photoscience,
+											
+										
+										
+										103~108,
+										2016
+									</li>
+									
+									<li>
+										Antiobesity Effect of SA37 in High-Fat Diet-induced Obese C57BL/6J Mice,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.37,No.5,
+										621~625,
+										2016
+									</li>
+									
+									<li>
+										Prediction of cellulose dissolution in ionic liquids using molecular descriptors based QSAR model,
+										<!--JOURNAL OF MOLECULAR LIQUIDS,-->
+										
+											
+											
+												JOURNAL OF MOLECULAR LIQUIDS,
+											
+										
+										Vol.215,
+										541~548,
+										2016
+									</li>
+									
+									<li>
+										Computational Studies on the Reaction from Silyl 1,4-Dilithio 1,3-butadiene to Lithio Silole,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.37,No.1,
+										33~41,
+										2016
+									</li>
+									
+									<li>
+										Modeling studies on the uptake of hydrogen molecules by graphene,
+										<!--JOURNAL OF MOLECULAR MODELING,-->
+										
+											
+											
+												JOURNAL OF MOLECULAR MODELING,
+											
+										
+										Vol.21,No.240,
+										
+										2015
+									</li>
+									
+									<li>
+										MSEP and ComFA Studies on the Melting Points of Nitroaromatic Compounds,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.36,No.7,
+										1838~1847,
+										2015
+									</li>
+									
+									<li>
+										Trienamine Catalysis for Asymmetric Diels-Alder Reactions of 2,4-Dienones: A Theoretical Investigation,
+										<!--ORGANIC & BIOMOLECULAR CHEMISTRY,-->
+										
+											
+											
+												ORGANIC & BIOMOLECULAR CHEMISTRY,
+											
+										
+										Vol.13,No.22,
+										6313~6324,
+										2015
+									</li>
+									
+									<li>
+										Comparative Study on the Gas Phase Heats of Formation,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.36,No.5,
+										
+										2015
+									</li>
+									
+									<li>
+										A Theoretical Reexamination of the π-Bond Strengths within the SiH2= XHn System,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.36,No.1,
+										123~129,
+										2015
+									</li>
+									
+									<li>
+										Mechanism for the decomposition of 5-aza-2 '-deoxycytidine: a theoretical study using Monte Carlo simulation plus local microhydration model,
+										<!--THEORETICAL CHEMISTRY ACCOUNTS,-->
+										
+											
+											
+												THEORETICAL CHEMISTRY ACCOUNTS,
+											
+										
+										Vol.133,No.4,
+										
+										2014
+									</li>
+									
+									<li>
+										Computational Study on Protolytic Dissociation of HCl and HF in Aqueous Solution,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.35,No.4,
+										1029~1035,
+										2014
+									</li>
+									
+									<li>
+										Modelling of catalytically oxidative decomposition of carbon tetrachloride on a ZnS nanocluster using density functional theory,
+										<!--CATALYSIS SCIENCE & TECHNOLOGY,-->
+										
+											
+											
+												CATALYSIS SCIENCE & TECHNOLOGY,
+											
+										
+										Vol.4,No.4,
+										1038~1046,
+										2014
+									</li>
+									
+									<li>
+										Adsorption Desulfurization on Azoles Modified ZSM5 Zeolite: A Theoretical Study,
+										<!--ASIAN JOURNAL OF CHEMISTRY,-->
+										
+											
+											
+												ASIAN JOURNAL OF CHEMISTRY,
+											
+										
+										Vol.26,No.6,
+										1689~1690,
+										2014
+									</li>
+									
+									<li>
+										DFT investigation of C-H bond activation of malononitrile in the presence of amines,
+										<!--NEW JOURNAL OF CHEMISTRY,-->
+										
+											
+											
+												NEW JOURNAL OF CHEMISTRY,
+											
+										
+										Vol.37,No.12,
+										3920~3927,
+										2013
+									</li>
+									
+									<li>
+										Quantitative Structure-Properties Relationship Studies on Physicochemical Properties of Organic Molecules Using CODESSA,
+										<!--ASIAN JOURNAL OF CHEMISTRY,-->
+										
+											
+											
+												ASIAN JOURNAL OF CHEMISTRY,
+											
+										
+										Vol.25,
+										5670~5672,
+										2013
+									</li>
+									
+									<li>
+										Prediction of Physicochemical Properties of Organic Molecules Using Semi-Empirical Methods,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.34,No.4,
+										1043~1046,
+										2013
+									</li>
+									
+									<li>
+										Asymmetric 1,4-Michael Addition Reactions Catalyzed by a Cinchona Alkaloid Derived Primary Amine: A Theoretical Investigation of the Reaction Mechanism and Enantioselectivity,
+										<!--EUROPEAN JOURNAL OF ORGANIC CHEMISTRY,-->
+										
+											
+											
+												EUROPEAN JOURNAL OF ORGANIC CHEMISTRY,
+											
+										
+										
+										1706~1715,
+										2013
+									</li>
+									
+									<li>
+										Comprehensive studies on the tautomerization of glycine: a theoretical study,
+										<!--ORGANIC & BIOMOLECULAR CHEMISTRY,-->
+										
+											
+											
+												ORGANIC & BIOMOLECULAR CHEMISTRY,
+											
+										
+										Vol.11,No.8,
+										1407~1413,
+										2013
+									</li>
+									
+									<li>
+										Study of Trans-1,2-Dichlorocyclohexane Absorbed in Zeolites,
+										<!--ASIAN JOURNAL OF CHEMISTRY,-->
+										
+											
+											
+												ASIAN JOURNAL OF CHEMISTRY,
+											
+										
+										Vol.24,No.9,
+										4050~4052,
+										2012
+									</li>
+									
+									<li>
+										Effects of the basis set superposition error on optimized geometries of trimer complexes (Part I),
+										<!--CHEMICAL PHYSICS LETTERS,-->
+										
+											
+											
+												CHEMICAL PHYSICS LETTERS,
+											
+										
+										Vol.545,
+										112~117,
+										2012
+									</li>
+									
+									<li>
+										Comparative Studies on the Reactions of Carbamyl and Thiocarbamyl Halides with NH3 in the Gas Phase and in Aqueous Solution: A Theoretical Study,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.33,No.6,
+										1955~1961,
+										2012
+									</li>
+									
+									<li>
+										Role of bifunctional catalyst 2-pyridone in the aminolysis of p-nitrophenyl acetate with n-butylamine: A computational study,
+										<!--JOURNAL OF MOLECULAR CATALYSIS A-CHEMICAL,-->
+										
+											
+											
+												JOURNAL OF MOLECULAR CATALYSIS A-CHEMICAL,
+											
+										
+										Vol.355,
+										102~112,
+										2012
+									</li>
+									
+									<li>
+										Fluoride indicator that functions in mixed aqueous media: hydrogen bonding effects,
+										<!--TETRAHEDRON LETTERS,-->
+										
+											
+											
+												TETRAHEDRON LETTERS,
+											
+										
+										Vol.53,No.5,
+										575~578,
+										2012
+									</li>
+									
+									<li>
+										Theoretical studies on the chemical decomposition of 5-aza-2 '-deoxycytidine: DFT study and Monte Carlo simulation,
+										<!--THEORETICAL CHEMISTRY ACCOUNTS,-->
+										
+											
+											
+												THEORETICAL CHEMISTRY ACCOUNTS,
+											
+										
+										Vol.131,No.2,
+										
+										2012
+									</li>
+									
+									<li>
+										Mechanism for the Reaction of 2-Naphthol with N-Methyl-N-phenyl-hydrazine Suggested by the Density Functional Theory Investigations,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.33,No.2,
+										220~230,
+										2012
+									</li>
+									
+									<li>
+										QSPR Studies on Impact Sensitivities of High Energy Density Molecules,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.32,No.12,
+										4341~4346,
+										2011
+									</li>
+									
+									<li>
+										Theoretical investigation on mechanism of asymmetric Michael addition of malononitrile to chalcones catalyzed by Cinchona alkaloid aluminium(III) complex,
+										<!--ORGANIC & BIOMOLECULAR CHEMISTRY,-->
+										
+											
+											
+												ORGANIC & BIOMOLECULAR CHEMISTRY,
+											
+										
+										Vol.9,No.18,
+										6402~6409,
+										2011
+									</li>
+									
+									<li>
+										Comprehensive Studies on the Free Energies of Solvation and Conformers of Glycine: A Theoretical Study,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.32,No.6,
+										1985~1992,
+										2011
+									</li>
+									
+									<li>
+										Kinetics and mechanism of the pyridinolysis of N-aryl-P,P-diphenyl phosphinic amides in dimethyl sulfoxide,
+										<!--JOURNAL OF PHYSICAL ORGANIC CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL ORGANIC CHEMISTRY,
+											
+										
+										Vol.24,No.6,
+										474~479,
+										2011
+									</li>
+									
+									<li>
+										Reexamination of the pi-Bond Strengths Within H2C=XHn Systems: A Theoretical Study,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.32,No.7,
+										1361~1367,
+										2011
+									</li>
+									
+									<li>
+										Quantum mechanics study and Monte Carlo simulation on the hydrolytic deamination of 5-methylcytosine glycol,
+										<!--PHYSICAL CHEMISTRY CHEMICAL PHYSICS,-->
+										
+											
+											
+												PHYSICAL CHEMISTRY CHEMICAL PHYSICS,
+											
+										
+										Vol.13,No.14,
+										6471~6483,
+										2011
+									</li>
+									
+									<li>
+										Kinetics and Mechanism of the Pyridinolysis of Aryl Phenyl Chlorothiophosphates in Acetonitrile,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.32,No.4,
+										1138~1142,
+										2011
+									</li>
+									
+									<li>
+										Kinetics and mechanism of the anilinolyses of aryl dimethyl, methyl phenyl and diphenyl phosphinates,
+										<!--ORGANIC & BIOMOLECULAR CHEMISTRY,-->
+										
+											
+											
+												ORGANIC & BIOMOLECULAR CHEMISTRY,
+											
+										
+										Vol.9,No.3,
+										717~724,
+										2011
+									</li>
+									
+									<li>
+										Theoretical Study of Phosphoryl Transfer Reactions,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.32,No.3,
+										889~893,
+										2011
+									</li>
+									
+									<li>
+										Barrier effect of dendrons on TiO2 particles in dye sensitized solar cells,
+										<!--CHEMICAL COMMUNICATIONS,-->
+										
+											
+											
+												CHEMICAL COMMUNICATIONS,
+											
+										
+										Vol.47,No.6,
+										1734~1736,
+										2011
+									</li>
+									
+									<li>
+										Comparative Studies on the Reactions of Acetyl and Thioacetyl Halides with NH3 in the Gas Phase and in Aqueous Solution: A Theoretical Study,
+										<!--JOURNAL OF PHYSICAL CHEMISTRY A,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL CHEMISTRY A,
+											
+										
+										Vol.115,No.8,
+										1364~1370,
+										2011
+									</li>
+									
+									<li>
+										Pyridinolysis of Diethyl Phosphinic Chloride in Acetonitrile,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.32,No.2,
+										709~712,
+										2011
+									</li>
+									
+									<li>
+										Kinetics and mechanism of the pyridinolyses of dimethyl and diethyl chloro(thiono)phosphates in acetonitrile,
+										<!--JOURNAL OF PHYSICAL ORGANIC CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL ORGANIC CHEMISTRY,
+											
+										
+										Vol.23,
+										1022~1028,
+										2010
+									</li>
+									
+									<li>
+										Theoretical Studies on the Formation Mechanism and Explosive Performance of Nitro-Substituted 1,3,5-Triazines,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.31,
+										2483~2492,
+										2010
+									</li>
+									
+									<li>
+										Mechanisms of Norbornadiene Dimerization to Binor-s Using Cationic Co-I, Rh-I, and Ir-I Catalysts,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.31,No.12,
+										2248~2257,
+										2010
+									</li>
+									
+									<li>
+										Basis Set Superposition Error on Structures and Complexation Energies of Organo-Alkali Metal Iodides,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.31,
+										2228~2234,
+										2010
+									</li>
+									
+									<li>
+										Re-examination of the pi-Bond Energies in Doubly-Bonded Species: A Theoretical Study,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.31,No.1,
+										174~176,
+										2010
+									</li>
+									
+									<li>
+										Effect of acidity and structure on the anhydrous proton conduction of acid-doped inorganic-organic hybrid membranes,
+										<!--JOURNAL OF MEMBRANE SCIENCE,-->
+										
+											
+											
+												JOURNAL OF MEMBRANE SCIENCE,
+											
+										
+										Vol.348,1-2,
+										190~196,
+										2010
+									</li>
+									
+									<li>
+										Theoretical studies on the gas-phase pyrolysis of 2-trimethylsilylethanol,
+										<!--JOURNAL OF MOLECULAR STRUCTURE-THEOCHEM,-->
+										
+											
+											
+												JOURNAL OF MOLECULAR STRUCTURE-THEOCHEM,
+											
+										
+										Vol.941,1-3,
+										127~132,
+										2010
+									</li>
+									
+									<li>
+										Theoretical study on the aminolysis of ester catalyzed by TBD: Hydrogen bonding or covalent bonding of the catalyst?,
+										<!--JOURNAL OF MOLECULAR STRUCTURE-THEOCHEM,-->
+										
+											
+											
+												JOURNAL OF MOLECULAR STRUCTURE-THEOCHEM,
+											
+										
+										Vol.942,1-3,
+										137~144,
+										2010
+									</li>
+									
+									<li>
+										Hydration of acetone in the gas phase and in water solvent,
+										<!--CANADIAN JOURNAL OF CHEMISTRY-REVUE CANADIENNE DE CHIMIE,-->
+										
+											
+											
+												CANADIAN JOURNAL OF CHEMISTRY-REVUE CANADIENNE DE CHIMIE,
+											
+										
+										Vol.88,No.1,
+										56~64,
+										2010
+									</li>
+									
+									<li>
+										Development of inhibitors against TraR quorum-sensing system in Agrobacterium tumefaciens by molecular modeling of the ligand-receptor interaction.,
+										<!--Molecules and Cells,-->
+										
+											
+											
+												Molecules and Cells,
+											
+										
+										Vol.28,
+										447~453,
+										2009
+									</li>
+									
+									<li>
+										Kinetics and mechanism of the aminolysis of dimethyl thiophosphinic chloride with anilines,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.30,No.4,
+										975~978,
+										2009
+									</li>
+									
+									<li>
+										Concurrent primary and secondary deuterium kinetic isotope effects in anilinolysis of O-aryl methyl phosphonochloridothioates,
+										<!--ORGANIC & BIOMOLECULAR CHEMISTRY,-->
+										
+											
+											
+												ORGANIC & BIOMOLECULAR CHEMISTRY,
+											
+										
+										Vol.7,No.14,
+										2919~2925,
+										2009
+									</li>
+									
+									<li>
+										Structural Understanding of quorum-sensing inhibitors by molecular modeling study in Pseudomonas aeruginosa,
+										<!--APPLIED MICROBIOLOGY AND BIOTECHNOLOGY,-->
+										
+											
+											
+												APPLIED MICROBIOLOGY AND BIOTECHNOLOGY,
+											
+										
+										Vol.83,
+										1095~1103,
+										2009
+									</li>
+									
+									<li>
+										Kinetics and mechanism of the aminolysis of dimethyl and methyl phenyl phosphinic chlorides with anilines,
+										<!--JOURNAL OF PHYSICAL ORGANIC CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL ORGANIC CHEMISTRY,
+											
+										
+										Vol.22,
+										425~430,
+										2009
+									</li>
+									
+									<li>
+										3D-QSAR studies on DATAs and DAPYs for HIV-RT Inhibitors using CoMFA and CoMSIA Approaches,
+										<!--QSAR & COMBINATORIAL SCIENCE,-->
+										
+											
+											
+												QSAR & COMBINATORIAL SCIENCE,
+											
+										
+										Vol.28,No.2,
+										218~225,
+										2009
+									</li>
+									
+									<li>
+										Effects of Basis Set Superposition Error on Optimized Geometries and Complexation Energies of Organo-Alkali Metal Cation Complexes,
+										<!--JOURNAL OF PHYSICAL CHEMISTRY A,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL CHEMISTRY A,
+											
+										
+										Vol.113,No.2,
+										513~519,
+										2009
+									</li>
+									
+									<li>
+										Hydration of Formaldehyde in Water: Insight from ONIOM Study,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.29,
+										2528~2530,
+										2008
+									</li>
+									
+									<li>
+										DFT study and Monte Carlo Simulation on the Aminolysis of XC(O)OCH3 (X=NH2, H, and CF3) with Monomeric and Dimeric Ammonias,
+										<!--JOURNAL OF CHEMICAL THEORY AND COMPUTATION,-->
+										
+											
+											
+												JOURNAL OF CHEMICAL THEORY AND COMPUTATION,
+											
+										
+										Vol.4,No.10,
+										1643~1653,
+										2008
+									</li>
+									
+									<li>
+										Furanone derivatives as quorum-sensing antagonists of Pseudomonas aeruginosa,
+										<!--APPLIED MICROBIOLOGY AND BIOTECHNOLOGY,-->
+										
+											
+											
+												APPLIED MICROBIOLOGY AND BIOTECHNOLOGY,
+											
+										
+										Vol.80,
+										37~47,
+										2008
+									</li>
+									
+									<li>
+										Prediction of densities for solid energetic molecules with molecular surface electrostatic potentials,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.29,
+										1818~1824,
+										2008
+									</li>
+									
+									<li>
+										The substituent effects of the leaving groups on the aminolysis of phenyl acetates: DFT studies,
+										<!--CHEMICAL PHYSICS,-->
+										
+											
+											
+												CHEMICAL PHYSICS,
+											
+										
+										Vol.345,
+										73~81,
+										2008
+									</li>
+									
+									<li>
+										Computational studies on the dimers and the thermal dimerization of norbornadiene,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.29,
+										1250~1258,
+										2008
+									</li>
+									
+									<li>
+										Theoretical studies on the addition reactions of ketene with NH3 in the gas phase and in non-aqueous solutions,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.29,
+										1335~1343,
+										2008
+									</li>
+									
+									<li>
+										Kinetics and mechanism of the anilinolysis of dimethyl and diethyl chloro(thiono)phosphates,
+										<!--JOURNAL OF PHYSICAL ORGANIC CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL ORGANIC CHEMISTRY,
+											
+										
+										Vol.21,7-8,
+										544~548,
+										2008
+									</li>
+									
+									<li>
+										Theoretical study on the hydrolysis mechanism of N,N-dimethyl-N &apos;-(2-oxo-1, 2-dihydro-pyrimidinyl)formamidine: Water-assisted mechanism and cluster-continuum model,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.29,
+										1222~1232,
+										2008
+									</li>
+									
+									<li>
+										Docking and virtual screening studies for new leads of Boar salivary lipocalin,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.29,
+										959~962,
+										2008
+									</li>
+									
+									<li>
+										Computational study on the aminolysis of beta-hydroxy-alpha,beta-unsaturated ester via the favorable path including the formation of alpha-oxo ketene intermediate,
+										<!--JOURNAL OF PHYSICAL CHEMISTRY A,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL CHEMISTRY A,
+											
+										
+										Vol.112,
+										4501~4510,
+										2008
+									</li>
+									
+									<li>
+										Pyridinolysis of O,O-diphenyl S-phenyl phosphorothiolates in acetonitrile,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.29,
+										851~855,
+										2008
+									</li>
+									
+									<li>
+										Nucleophilic substitution reactions of alpha-bromoacetanilides with benzylamines,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.29,
+										191~196,
+										2008
+									</li>
+									
+									<li>
+										Kinetics and mechanism of the aminolysis of aryl ethyl chloro and chlorothio phosphates with anilines,
+										<!--ORGANIC & BIOMOLECULAR CHEMISTRY,-->
+										
+											
+											
+												ORGANIC & BIOMOLECULAR CHEMISTRY,
+											
+										
+										Vol.5,No.24,
+										3944~3950,
+										2007
+									</li>
+									
+									<li>
+										Kinetics and mechanism of the pyridinolysis of diphenyl phosphinic and thiophosphinic chlorides in acetonitrile,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.28,No.10,
+										1797~1802,
+										2007
+									</li>
+									
+									<li>
+										Molecular Modeling, Synthesis, and Screening of New Bacterial Quorum-sensing Antagonists,
+										<!--Journal of Microbiology and Biotechnology,-->
+										
+											
+											
+												Journal of Microbiology and Biotechnology,
+											
+										
+										Vol.1710,
+										1598~1606,
+										2007
+									</li>
+									
+									<li>
+										Characterization of DNA/poly(ethylene imine) electrolyte membranes,
+										<!--MACROMOLECULAR RESEARCH,-->
+										
+											
+											
+												MACROMOLECULAR RESEARCH,
+											
+										
+										Vol.15,No.6,
+										581~586,
+										2007
+									</li>
+									
+									<li>
+										Docking studies on formylchromone derivatives as protein tyrosine phosphatase 1B (PTP1B) inhibitors,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.28,No.7,
+										1141~1150,
+										2007
+									</li>
+									
+									<li>
+										Substituent Effects on the Gas-Phase Pyrolyses of 2-Substituted Ethyl N,N-Ethyldialkylcarbamates: A Theoretical Study,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.286,
+										1031,
+										2007
+									</li>
+									
+									<li>
+										Kinetics and Mechanism of the Aminolysis of Aryl Phenyl Chlorothiophophates with Anilines,
+										<!--JOURNAL OF ORGANIC CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF ORGANIC CHEMISTRY,
+											
+										
+										Vol.7215,
+										5493,
+										2007
+									</li>
+									
+									<li>
+										Docking, synthesis, and screening of new quorum-sensing antagonists based on molecular docking scores,
+										<!--응용화학,-->
+										
+											
+											
+												응용화학,
+											
+										
+										Vol.111,
+										101~104,
+										2007
+									</li>
+									
+									<li>
+										Theoretical Studies on the Hydrolyis Mechanism of N-(2-oxo-1,2-dihydro-pyrimidinyl) Formamide,
+										<!--JOURNAL OF PHYSICAL CHEMISTRY B,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL CHEMISTRY B,
+											
+										
+										Vol.1119,
+										2357~2364,
+										2007
+									</li>
+									
+									<li>
+										Effects of entropy on the gas-phase pyrolysis of ethyl N,N-dimethylcarbamate,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.28,No.3,
+										625~631,
+										2007
+									</li>
+									
+									<li>
+										QSAR studies on 6-nitroquipazine analogues as serotonin transporter,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.27,No.12,
+										1969~1975,
+										2006
+									</li>
+									
+									<li>
+										Examination of Gaussian-type basis sets on alkali metal iodides,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.27,
+										1219~1221,
+										2006
+									</li>
+									
+									<li>
+										Anion complexation by calix[4]pyrrole in solid polymer electrolytes,
+										<!--MACROMOLECULAR RESEARCH,-->
+										
+											
+											
+												MACROMOLECULAR RESEARCH,
+											
+										
+										Vol.14,
+										404~407,
+										2006
+									</li>
+									
+									<li>
+										Theoretical Study on the Hydrolysis Mechanism of N,N-dimethyl-N'- (2-oxo-1,2-dihydro-pyrimidinyl)formamidien: Water-Assisted Mechanism and Cluster-Continuum Model,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.29,No.8,
+										1222~1232,
+										2006
+									</li>
+									
+									<li>
+										3D-QSAR of non-peptidyl caspase-3 enzyme inhibitors using CoMFA and CoMSIA,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.27,
+										273~276,
+										2006
+									</li>
+									
+									<li>
+										Unusual pi-donating effects of pi-accepting substituents on the stabilities of benzylic cations: A theoretical study,
+										<!--JOURNAL OF PHYSICAL CHEMISTRY A,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL CHEMISTRY A,
+											
+										
+										Vol.110,
+										2500~2504,
+										2006
+									</li>
+									
+									<li>
+										DFT Study and Monte Cdrlo Simulation on Proton Transfers of 2-A-Amino-2-oxazoline, 2-Amino-2-thiazoline, and 2-Amino-2-imidazoline in the Gas Phase and in Water,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.26,
+										994~1005,
+										2005
+									</li>
+									
+									<li>
+										Hydration of the carbonyl group - Acetic acid catalysis in the co-operative mechanism1,
+										<!--CANADIAN JOURNAL OF CHEMISTRY-REVUE CANADIENNE DE CHIMIE,-->
+										
+											
+											
+												CANADIAN JOURNAL OF CHEMISTRY-REVUE CANADIENNE DE CHIMIE,
+											
+										
+										Vol.83,
+										769~785,
+										2005
+									</li>
+									
+									<li>
+										Ad ab initio study of ionic liquid silver complexs as carriers in facilitated olefin transport membranes,
+										<!--JOURNAL OF MEMBRANE SCIENCE,-->
+										
+											
+											
+												JOURNAL OF MEMBRANE SCIENCE,
+											
+										
+										Vol.260,
+										37~44,
+										2005
+									</li>
+									
+									<li>
+										Nuclephilic Substitution Reactions of α-Chlroacetanilides with Pyridines in Dimethyl Sulfoxide,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.26,
+										776~780,
+										2005
+									</li>
+									
+									<li>
+										Formylchromone Derivatives as Irreversible and selective inhibitors of human protein tyrosine phosphatase 1B. Kinetic and Modeling Studies,
+										<!--BIOORGANIC & MEDICINAL CHEMISTRY,-->
+										
+											
+											
+												BIOORGANIC & MEDICINAL CHEMISTRY,
+											
+										
+										Vol.13,
+										1325~1332,
+										2005
+									</li>
+									
+									<li>
+										Ligand-based QSAR Studies on the Indolinones Derivatives as Inhibitors of the Protein Tyrosine Kinase of Fibroblast Growth Factor Receptor by CoMFA and CoMSIA,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.2512,
+										1801~1806,
+										2004
+									</li>
+									
+									<li>
+										Prediction of Physicochemical Properties of Organic Molecules using van der Waals Surface Electrostatic Properties,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.25,
+										2073~2079,
+										2004
+									</li>
+									
+									<li>
+										3D QSAR Studies on Cinnamaldehyde Analogues as Farnesyl Protein Transferase Inhibitors.,
+										<!--ARCHIVES OF PHARMACAL RESEARCH,-->
+										
+											
+											
+												ARCHIVES OF PHARMACAL RESEARCH,
+											
+										
+										Vol.2710,
+										1001~1008,
+										2004
+									</li>
+									
+									<li>
+										Receptor-based QSAR Studies on the PPARγ Agonists using the CoMFA and CoMSIA approaches,
+										<!--QSAR & COMBINATORIAL SCIENCE,-->
+										
+											
+											
+												QSAR & COMBINATORIAL SCIENCE,
+											
+										
+										Vol.23,
+										637~649,
+										2004
+									</li>
+									
+									<li>
+										Ab initio and DFT Studies on Hydrolyses of Phosphorus Halides ,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.25,
+										1740~1748,
+										2004
+									</li>
+									
+									<li>
+										NBO Analysis of the Back-Bonding in Metal-Olefin Complexes,
+										<!--CHEMICAL PHYSICS LETTERS,-->
+										
+											
+											
+												CHEMICAL PHYSICS LETTERS,
+											
+										
+										Vol.391,
+										321~324,
+										2004
+									</li>
+									
+									<li>
+										Theoretical Studies on the Hydride Ion Affinities of Carbocations,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.252,
+										311~313,
+										2004
+									</li>
+									
+									<li>
+										Modeling of Inhibition Mechanism of Natural Ligands to Farnesyl Protein Transferase Using Molecular Docking,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.2410,
+										1509~1511,
+										2003
+									</li>
+									
+									<li>
+										Effects of Substituents and Solvents on the Reactions of Iminophosphoranes with Formaldehyde: Ab initio MO Calculation and Monte Carlo Simulation,
+										<!--JOURNAL OF PHYSICAL CHEMISTRY A,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL CHEMISTRY A,
+											
+										
+										Vol.10739,
+										7945~7951,
+										2003
+									</li>
+									
+									<li>
+										Theoretical Study on the Pyrolysis of Sulphonyl Oximes in the Gas Phase,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.246,
+										853~858,
+										2003
+									</li>
+									
+									<li>
+										Theoretical Studies of the Gas-Phase Identity Nucleophilic Substitution Reactions of Cyclopentadienyl Halides,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.245,
+										583~592,
+										2003
+									</li>
+									
+									<li>
+										Theoretical Studies on the Gas-Phase Pyrolysis of 2-phenoxycarboxylic Acids: An ONIOM Approach,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.248,
+										963~972,
+										2003
+									</li>
+									
+									<li>
+										Theoretical studies on hetero Diels-Alder reactions of sulfur diimides,
+										<!--NEW JOURNAL OF CHEMISTRY,-->
+										
+											
+											
+												NEW JOURNAL OF CHEMISTRY,
+											
+										
+										Vol.26,
+										1693,
+										2002
+									</li>
+									
+									<li>
+										High Level ab Initio Study of Thermal 1,3-Sigmatropic Shift in CH2=CHCH2X with X=BH2, NH2, and CH3,
+										<!--JOURNAL OF PHYSICAL CHEMISTRY A,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL CHEMISTRY A,
+											
+										
+										Vol.106,No.23,
+										5709~5715,
+										2002
+									</li>
+									
+									<li>
+										Theoretical Reevaluation of the π-Donating effect of electron-withdrawing substituents in the conjugated cationic systems,
+										<!--JOURNAL OF PHYSICAL CHEMISTRY A,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL CHEMISTRY A,
+											
+										
+										VOL.106,NO.11,
+										2554~2560,
+										2002
+									</li>
+									
+									<li>
+										Gas phase identity nucleophilic substitution reactions of cyclopropenyl halides,
+										<!--JOURNAL OF ORGANIC CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF ORGANIC CHEMISTRY,
+											
+										
+										VOL.67,NO.6,
+										1953~1960,
+										2002
+									</li>
+									
+									<li>
+										Density Functional Theory Studies on the Reaction Mechanisms of Silver Ions with Ethylene in Facilitated Transport Membranes: A Modeling Study,
+										<!--JOURNAL OF PHYSICAL CHEMISTRY A,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL CHEMISTRY A,
+											
+										
+										Vol.105,No.39,
+										9024~9028,
+										2001
+									</li>
+									
+									<li>
+										Synthesis and decarboxylation of D2-cephem-4,4-dicarboxylic acids,
+										<!--CANADIAN JOURNAL OF CHEMISTRY-REVUE CANADIENNE DE CHIMIE,-->
+										
+											
+											
+												CANADIAN JOURNAL OF CHEMISTRY-REVUE CANADIENNE DE CHIMIE,
+											
+										
+										Vol.79,No.8,
+										1238~1258,
+										2001
+									</li>
+									
+									<li>
+										Density Functional Theory Studies on the DIssociateion Energies of Metallic Salts: Relationship between Lattice and Dissociation Energies,
+										<!--JOURNAL OF COMPUTATIONAL CHEMISTRY,-->
+										
+											
+											
+												JOURNAL OF COMPUTATIONAL CHEMISTRY,
+											
+										
+										Vol.22No.8,
+										827~834,
+										2001
+									</li>
+									
+									<li>
+										Nucleophilic Substitution at the Imidoyl Carbon Atom:Intermediate Mechanistic and Reactivity Behavior between Carbonyl and Vinyl Carbon Substitution,
+										<!--JOURNAL OF THE AMERICAN CHEMICAL SOCIETY,-->
+										
+											
+											
+												JOURNAL OF THE AMERICAN CHEMICAL SOCIETY,
+											
+										
+										Vol.123,No.10,
+										2326~2333,
+										2001
+									</li>
+									
+									<li>
+										Theoretical Studies on the Competitive SN2 Reactions of O-Imidomethyl Derivatives of Phenols with OH-,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.22,No.1,
+										25~29,
+										2001
+									</li>
+									
+									<li>
+										Acyl-Transfer Mechanism Involving Various Functional Groups: >X=Y with X=C,S,P and Y=O,S,
+										<!--JOURNAL OF THE AMERICAN CHEMICAL SOCIETY,-->
+										
+											
+											
+												JOURNAL OF THE AMERICAN CHEMICAL SOCIETY,
+											
+										
+										Vol.122,No.45,
+										11162~11172,
+										2000
+									</li>
+									
+									<li>
+										Transmission of Substituent Effects through 5-membered Heteroaromatic Rings,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.21,No.9,
+										882~890,
+										2000
+									</li>
+									
+									<li>
+										Transmission of Substituent Effects through Five-Membered Heteroaromatic Tings, II. Deprotonation Equilibria of Phenol Analogues,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.21,No.9,
+										891~895,
+										2000
+									</li>
+									
+									<li>
+										Thoeretical Studies on Gas-Phase Reactions of Negative Ions with Alkyl Nitrites,
+										<!--Bulletin of the Korean Chemical Society,-->
+										
+											
+											
+												Bulletin of the Korean Chemical Society,
+											
+										
+										Vol.21,No.6,
+										823~827,
+										2000
+									</li>
+									
+									<li>
+										Theoretical Studies of Substituent and Solvent Effects on Protonation Equilibria of Benzaldehydes,
+										<!--JOURNAL OF PHYSICAL CHEMISTRY A,-->
+										
+											
+											
+												JOURNAL OF PHYSICAL CHEMISTRY A,
+											
+										
+										Vol.104,No.26,
+										6332~6337,
+										2000
+									</li>
+									
+									<li>
+										Theoretical Studies on Phenyl Group Migration of Protonated 1,2-Diphenyl Hydrazines,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Bulletin of Korean Chemical Society,
+											
+											
+										
+										Vol.21,No.5,
+										477~482,
+										2000
+									</li>
+									
+									<li>
+										비활성화된 탄소에서의 친핵성 치환반응,
+										<!--JOURNAL OF THE AMERICAN CHEMICAL SOCIETY,-->
+										
+											
+											
+												JOURNAL OF THE AMERICAN CHEMICAL SOCIETY,
+											
+										
+										Vol.122,No.10,
+										2294~2299,
+										2000
+									</li>
+									
+									<li>
+										Theoretical studies on the iminium ion-forming reaction,
+										<!--국제공인학술지(이전),-->
+										
+											
+											
+												국제공인학술지(이전),
+											
+										
+										Vol.12,No.6,
+										479~485,
+										1999
+									</li>
+									
+									<li>
+										Theoretical Studies on the Gas-Phase Alkylation of Delocalized Ambident Anions with Methyl Fluoride,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Bull. Korean Chem. Soc.,
+											
+											
+										
+										Vol.20,No.5,
+										559~566,
+										1999
+									</li>
+									
+									<li>
+										 Theoretical studies on cross interactions in the protonation equilibria of diaryl ketones,
+										<!--국제공인학술지(이전),-->
+										
+											
+												J. Chem. Soc. Perkin Trans.2,
+											
+											
+										
+										Vol.No.3,
+										643~649,
+										1999
+									</li>
+									
+									<li>
+										Intrinsic barriers for imbalanced versus balanced transition structures,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Journal of Physical Organic Chemistry,
+											
+											
+										
+										Vol.12,
+										255~258,
+										1999
+									</li>
+									
+									<li>
+										PM3 Studies on the Acid-Catalyzed Hydrolysis of 1-Phenoxyethyl Propionate,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Bulletin of the Korean Chemical Society,
+											
+											
+										
+										Vol.19,No.9,
+										993~999,
+										1998
+									</li>
+									
+									<li>
+										Alkyl Transfer with Retention and Inversion of Configuration. Reexamination of a Putative [1s,4s] Sigmatropic Rearrangement,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Chemistry European Journal,
+											
+											
+										
+										Vol.4,No.5,
+										886~902,
+										1998
+									</li>
+									
+									<li>
+										Transverse Compression and the second H/D Isotope Effects in Intramolecular SN2 methyl-transfer reactions,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Canadian Journal of Chemistry,
+											
+											
+										
+										Vol.76,No.1,
+										102~113,
+										1998
+									</li>
+									
+									<li>
+										Hydration of the Carbonyl Group. Further Evidence for a Cooperative Mechanism from Experimental and Theoretical Studies of the Formaldehyde, Acetaldehyde, Acetone and Cyclohexanone,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Canadian Journal of Chemistry,
+											
+											
+										
+										Vol.76,No.1,
+										114~124,
+										1998
+									</li>
+									
+									<li>
+										Theoretical Studies on the Transition-State Imbalance in Malononitrile Anion Forming Reactions in the Gas Phase and in Water,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Journal of Physical Organic Chemistry,
+											
+											
+										
+										Vol.10,No.12,
+										908~916,
+										1997
+									</li>
+									
+									<li>
+										Ab initio Studiesof Three-Membered Ring Formation through Intramolecular  Nucleophilic Substitution,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Journal of Computational Chemistry,
+											
+											
+										
+										Vol.18,No.4,
+										1773~1784,
+										1997
+									</li>
+									
+									<li>
+										Theoretical Studies on the Acid-Catalyzed Hydrolysis of Sulfinamide,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Bulletin of Korean Chemical Society,
+											
+											
+										
+										Vol.18,No.8,
+										880~885,
+										1997
+									</li>
+									
+									<li>
+										Theoretical Studies on the Gas-Phase Wolff  Rearrangement of α-Ketocarbenes,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Bulletin of Korean Chemical Society,
+											
+											
+										
+										Vol.18,No.4,
+										395~401,
+										1997
+									</li>
+									
+									<li>
+										EMS Studies of Larger Molecules of Chemical and Biochemical Interest,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Canadian Journal of Physics,
+											
+											
+										
+										Vol.74,No.,
+										773~781,
+										1996
+									</li>
+									
+									<li>
+										Ab initio Studies on the Hetero Diels-Alder Cycloaddition,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Bulletin of Korean Chemical Society,
+											
+											
+										
+										Vol.17,No.,
+										849~853,
+										1996
+									</li>
+									
+									<li>
+										Theoretical Studies on the Diels-Alder Reactions between Cyclopentadiene and Conformationally Flexible Dienophiles,
+										<!--국내공인학술지(이전),-->
+										
+											
+												대한화학회지,
+											
+											
+										
+										Vol.40,No.7,
+										483~491,
+										1996
+									</li>
+									
+									<li>
+										Hydration of the Carbonyl Group. A Theoretical Study of the Cooperative Mechanism,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Journal of the American Chemical Society,
+											
+											
+										
+										Vol.117,No.15,
+										4240~4260,
+										1995
+									</li>
+									
+									<li>
+										Ab Initio Molecular Orbital Calculations on the Neutral Hydrolysis and Methanolysis of Azetidinones, Including Catalysis by Water. Relationship to the Mechanism of Action of β-Lactam Antibiotics,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Canadian Journal of Chemistry,
+											
+											
+										
+										Vol.72No.,
+										1033~1043,
+										1994
+									</li>
+									
+									<li>
+										Interactive Design and Synthesis of a Novel Antibacterial Agent,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Canadian Journal of Chemsitry,
+											
+											
+										
+										Vol.72,No.,
+										1051~1065,
+										1994
+									</li>
+									
+									<li>
+										Synthesis of the Stereoisomers of a Novel Antibacterial Agent and Interpretation of Their Relative Activities in terms of a Theoretical Model of the Penicillin Receptor,
+										<!--국제공인학술지(이전),-->
+										
+											
+												Canadian Journal of Chemistry,
+											
+											
+										
+										Vol.72,No.,
+										1066~1075,
+										1994
+									</li>
+									
+								
+								</ul>
+							</div>
+
+
+
+
+
+
+
+
+
+
+                                </div>                            
+                            </div>           
+
+
+                            
+                            <!-- Isotope Ends -->  	
+                        </div>
+                    </div>
+							 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.slidewrap2').carousel({
+                slider: '.slider',
+                slide: '.slide',
+                slideHed: '.slidehed',
+                nextSlide : '.next',
+                prevSlide : '.prev',
+                addPagination: false,
+                addNav : false
+            });
+        });
+        $(window).load(function(){
+             $("a[class^='prettyPhoto']").prettyPhoto({social_tools: '' });
+             // cache container
+            var $container = $('#isotope-container');
+            // initialize isotope
+            $container.isotope({
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                },
+                layoutMode : 'fitRows'
+            });
+            // filter items when filter link is clicked
+            $('#filters a').click(function(){
+                $("#filters a.active").removeClass('active');
+                $(this).addClass('active');
+                var selector = $(this).attr('data-filter');
+                $container.isotope({ filter: selector });
+                return false;
+            });
+        });
+    
+    </script>
+
+                   
+				</div>
+            </div>
+            
+        	
+            <div class="footer style-2">
+            	<div class="background"><div class="stitch"></div></div>
+                <div class="foot-nav-bg"></div>
+            	<div class="content">
+                    <div class="patch"></div>
+                    <div class="blur"></div>
+                    <div class="pattern">
+                        <div class="container">
+                        	<div class="stitch"></div>
+                            <div class="sixteen columns">
+                                <div class="first column alpha">
+                                    <div>
+                                        <h5>Tel:</h5>
+                                        <p>
+                                            010-9123-0123
+                     					</p>
+                                    </div>
+                                </div>
+                                <div class="column ct">
+                                    <h5>Address:</h5>
+                                        <p>
+                                            인천시 남구 용현동 인하대학교 화학과
+                     					</p>
+                                </div>
+                                <div class="last column omega">
+                                    <h5>E-Mail:</h5>
+                                    
+                                        <p>
+                                            kckyung@inha.ac.kr
+                     					</p>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+		</div>    
+		
+		<a href="#" class="back-to-top">Back to Top</a>
+		
+        <script>            
+			jQuery(document).ready(function() {
+				var offset = 220;
+				var duration = 500;
+				jQuery(window).scroll(function() {
+					if (jQuery(this).scrollTop() > offset) {
+						jQuery('.back-to-top').fadeIn(duration);
+					} else {
+						jQuery('.back-to-top').fadeOut(duration);
+					}
+				});
+				
+				jQuery('.back-to-top').click(function(event) {
+					event.preventDefault();
+					jQuery('html, body').animate({scrollTop: 0}, duration);
+					return false;
+				})
+			});
+		</script>
+		
+	</div>
+</body>
+
+</html>
